@@ -1,0 +1,26 @@
+# Arquivos e diretórios a serem ignorados pelo Git no projeto Diário
+
+# Ignorar arquivos gerados automaticamente
+/node_modules/
+/build/
+/dist/
+/.vscode/
+/.idea/
+*.log
+
+# Ignorar arquivos de configuração de desenvolvimento
+.env
+
+# Ignorar arquivos de configuração do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de backup
+*~
+
+# Ignorar arquivos de configuração de editores de texto
+.vscode/
+.idea/
+
+# Ignorar notebooks Jupyter
+*.ipynb
