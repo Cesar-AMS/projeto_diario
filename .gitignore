@@ -9,7 +9,7 @@
 *.log
 
 # Ignorar arquivos de configuração de desenvolvimento
-.env
+env
 
 # Ignorar arquivos de configuração do sistema operacional
 .DS_Store
