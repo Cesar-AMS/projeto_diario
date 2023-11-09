@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Projeto Diário</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        h1 {
-            color: #007BFF;
-        }
-
-        p {
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-    <h1>Projeto Diário</h1>
-    <p>Bem-vindo ao seu projeto diário! Esta é uma página de teste.</p>
+    <div class="container">
+        <h1>Bem-vindo ao Seu Diário Criativo</h1>
+        <div class="diario">
+            <div id="entrada-usuario">
+                <h2>Escreva suas ideias criativas aqui:</h2>
+                <textarea id="texto-entrada" rows="5" cols="40"></textarea>
+                <button id="enviar">Enviar</button>
+            </div>
+            <div id="resposta-sistema">
+                <h2>Resposta:</h2>
+                <div id="resposta"></div>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
