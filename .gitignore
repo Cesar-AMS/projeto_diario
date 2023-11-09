@@ -24,6 +24,8 @@ Thumbs.db
 
 # Ignorar notebooks Jupyter
 *.ipynb
+.notebook
+.notebooks
 
 
 # Ignorar pycache
