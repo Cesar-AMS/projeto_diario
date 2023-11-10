@@ -1,9 +1,7 @@
-# app.py
 from flask import Flask, render_template, request
 from tratacao.tratamento import TratamentoDados
 
 app = Flask(__name__)
-tratamento = TratamentoDados()
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -15,7 +13,8 @@ def home():
         entrada_usuario = request.form.get("entrada_usuario")
 
         # Processar a entrada usando a classe TratamentoDados
-        resposta_tratada = tratamento.processar_entrada(entrada_usuario)
+        tratamento = TratamentoDados(texto=entrada_usuario)
+        resposta_tratada = tratamento.preprocessamento_completo()
 
     return render_template("home.html", entrada=entrada_usuario, resposta=resposta_tratada)
 
