@@ -1,22 +1,8 @@
-import pandas as pd
-
+# tratacao/tratamento.py
 class TratamentoDados:
-
-    def __init__(self, dados):
-        self.dados = dados
-
-    def ler_dados(self):
-        # Ler os dados de entrada
-        return self.dados
-
-    def tratar_dados(self):
-    # Aplicar as operações de tratamento
-        dados = self.dados.upper()
-        return dados
-
-
-    def retornar_dados(self):
-        # Retornar os dados tratados
-        return self.dados
-
-
+    def processar_entrada(self, entrada):
+        # Lógica para processar a entrada aqui
+        # Exemplo: converter para maiúsculas e adicionar uma resposta
+        entrada_tratada = entrada.upper()
+        resposta_tratada = f"Você disse: {entrada_tratada}"
+        return {"entrada_usuario": entrada, "resposta_tratada": resposta_tratada}

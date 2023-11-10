@@ -1,16 +1,23 @@
-from flask import Flask, render_template
-
+# app.py
+from flask import Flask, render_template, request
+from tratacao.tratamento import TratamentoDados
 
 app = Flask(__name__)
+tratamento = TratamentoDados()
 
-# rotas e funções
-
-
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("home.html")
+    resposta = None
 
+    if request.method == "POST":
+        # Obter a entrada do usuário do formulário
+        entrada_usuario = request.form.get("entrada_usuario")
 
-# colocar o site no ar
+        # Processar a entrada usando a classe TratamentoDados
+        resposta = tratamento.processar_entrada(entrada_usuario)
+
+    return render_template("home.html", resposta=resposta)
+
+# Colocar o site no ar
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,23 +1,26 @@
+<!-- templates/chat.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Projeto Diário</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Bem-vindo ao Seu Diário Criativo</h1>
-        <div class="diario">
-            <div id="entrada-usuario">
-                <h2>Escreva aqui</h2>
-                <textarea id="texto-entrada" rows="5" cols="40"></textarea>
-                <button id="enviar">Enviar</button>
-            </div>
-            <div id="resposta-sistema">
-                <h2>Resposta:</h2>
-                <div id="resposta"></div>
-            </div>
-        </div>
+    <h1>Chat Interativo</h1>
+
+    <div id="chat-container">
+        {% if resposta %}
+            <div class="mensagem-usuario">Você: {{ resposta.entrada_usuario }}</div>
+            <div class="mensagem-resposta">Resposta: {{ resposta.resposta_tratada }}</div>
+        {% endif %}
     </div>
+
+    <form method="post">
+        <label for="entrada_usuario">Digite sua mensagem:</label>
+        <input type="text" name="entrada_usuario" id="entrada_usuario" required>
+        <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>
