@@ -1,4 +1,4 @@
-<!-- templates/chat.html -->
+<!-- templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <title>Chat</title>
+    <title>Tratamento de Dados</title>
 </head>
 <body>
-    <h1>Chat Interativo</h1>
-
-    <div id="chat-container">
-        {% if resposta %}
-            <div class="mensagem-usuario">Você: {{ resposta.entrada_usuario }}</div>
-            <div class="mensagem-resposta">Resposta: {{ resposta.resposta_tratada }}</div>
-        {% endif %}
-    </div>
-
+    <h1>Tratamento de Dados</h1>
     <form method="post">
-        <label for="entrada_usuario">Digite sua mensagem:</label>
+        <label for="entrada_usuario">Digite a entrada do usuário:</label>
         <input type="text" name="entrada_usuario" id="entrada_usuario" required>
         <button type="submit">Enviar</button>
     </form>
+
+    {% if entrada %}
+        <p>Entrada do usuário: {{ entrada }}</p>
+    {% endif %}
+
+    {% if resposta %}
+        <p>Resposta tratada: {{ resposta.resposta_tratada }}</p>
+    {% endif %}
 </body>
 </html>
