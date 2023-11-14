@@ -2,6 +2,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class TratamentoDados:
     def __init__(self, texto: str):
@@ -78,3 +79,17 @@ class TratamentoDados:
         tokens_sem_stopwords = self.remover_stopwords(tokens)
         tokens_lemmatizados = self.lemmatization(tokens_sem_stopwords)
         return tokens_lemmatizados
+
+    def vetorizacao_tfidf(self, tokens: list) -> list:
+        """
+        Converte os tokens em uma representação vetorial usando TF-IDF.
+
+        Args:
+        tokens (list): Lista de tokens.
+
+        Returns:
+        list: Vetor TF-IDF.
+        """
+        tfidf_vectorizer = TfidfVectorizer()
+        tfidf_matrix = tfidf_vectorizer.fit_transform([" ".join(tokens)])
+        return tfidf_matrix.toarray().tolist()
