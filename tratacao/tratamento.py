@@ -19,27 +19,30 @@ class TratamentoDados:
         nltk.download('stopwords')
         nltk.download('wordnet')
 
-    def limpar_texto(self) -> str:
+    @staticmethod
+    def limpar_texto(texto: str) -> str:
         """
         Limpa o texto removendo caracteres especiais, pontuações, etc.
 
         Returns:
         str: O texto limpo.
         """
-        texto_limpo = re.sub(r'[^a-zA-Z\s]', '', self.texto)
+        texto_limpo = re.sub(r'[^a-zA-Z\s]', '', texto)
         return texto_limpo
 
-    def tokenizacao(self) -> list:
+    @staticmethod
+    def tokenizacao(texto: str) -> list:
         """
         Divide o texto em tokens (palavras ou partes significativas).
 
         Returns:
         list: Lista de tokens.
         """
-        tokens = nltk.word_tokenize(self.texto)
+        tokens = nltk.word_tokenize(texto)
         return tokens
 
-    def remover_stopwords(self, tokens: list) -> list:
+    @staticmethod
+    def remover_stopwords(tokens: list) -> list:
         """
         Remove palavras comuns que geralmente não contribuem significativamente.
 
@@ -53,7 +56,8 @@ class TratamentoDados:
         tokens_sem_stopwords = [token for token in tokens if token.lower() not in stopwords_lista]
         return tokens_sem_stopwords
 
-    def lemmatization(self, tokens: list) -> list:
+    @staticmethod
+    def lemmatization(tokens: list) -> list:
         """
         Reduz as palavras à sua forma base (lemmatização).
 
@@ -67,20 +71,8 @@ class TratamentoDados:
         tokens_lemmatizados = [lemmatizer.lemmatize(token) for token in tokens]
         return tokens_lemmatizados
 
-    def preprocessamento_completo(self) -> list:
-        """
-        Realiza o pré-processamento completo do texto.
-
-        Returns:
-        list: Lista de tokens após o pré-processamento.
-        """
-        texto_limpo = self.limpar_texto()
-        tokens = self.tokenizacao()
-        tokens_sem_stopwords = self.remover_stopwords(tokens)
-        tokens_lemmatizados = self.lemmatization(tokens_sem_stopwords)
-        return tokens_lemmatizados
-
-    def vetorizacao_tfidf(self, tokens: list) -> list:
+    @staticmethod
+    def vetorizacao_tfidf(tokens: list) -> list:
         """
         Converte os tokens em uma representação vetorial usando TF-IDF.
 
@@ -93,3 +85,19 @@ class TratamentoDados:
         tfidf_vectorizer = TfidfVectorizer()
         tfidf_matrix = tfidf_vectorizer.fit_transform([" ".join(tokens)])
         return tfidf_matrix.toarray().tolist()
+
+    def preprocessamento_completo(self) -> list:
+        """
+        Realiza o pré-processamento completo do texto.
+
+        Returns:
+        list: Lista de tokens após o pré-processamento.
+        """
+        texto_limpo = self.limpar_texto(self.texto)
+        tokens = self.tokenizacao(texto_limpo)
+        tokens_sem_stopwords = self.remover_stopwords(tokens)
+        tokens_lemmatizados = self.lemmatization(tokens_sem_stopwords)
+        vetorizado = self.vetorizacao_tfidf(tokens_lemmatizados)
+        return vetorizado
+
+
