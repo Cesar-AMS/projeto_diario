@@ -86,12 +86,12 @@ class TratamentoDados:
         tfidf_matrix = tfidf_vectorizer.fit_transform([" ".join(tokens)])
         return tfidf_matrix.toarray().tolist()
 
-    def preprocessamento_completo(self) -> list:
+    def processar_texto(self) -> str:
         """
-        Realiza o pré-processamento completo do texto.
+        Realiza o pré-processamento completo do texto e retorna o resultado em formato HTML.
 
         Returns:
-        list: Lista de tokens após o pré-processamento.
+        str: Resultado do pré-processamento em formato HTML.
         """
         texto_limpo = self.limpar_texto(self.texto)
         tokens = self.tokenizacao(texto_limpo)
