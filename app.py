@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
-from tratacao.tratamento import TratamentoDados
+from tratacao.controlador import ControladorPreprocessamento
 
 app = Flask(__name__)
+
+# Instanciar o controlador
+controlador_preprocessamento = ControladorPreprocessamento()
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -12,9 +15,8 @@ def home():
         # Obter a entrada do usuário do formulário
         entrada_usuario = request.form.get("entrada_usuario")
 
-        # Processar a entrada usando a classe TratamentoDados
-        tratamento = TratamentoDados(texto=entrada_usuario)
-        resposta_tratada = tratamento.preprocessamento_completo()
+        # Processar a entrada usando o controlador
+        resposta_tratada = controlador_preprocessamento.preprocessar(entrada_usuario)
 
     return render_template("home.html", entrada=entrada_usuario, resposta=resposta_tratada)
 
