@@ -1,8 +1,9 @@
 # tratamento/limpar_texto.py
 import re
+from typing import Optional, List
 
 class LimparTexto:
-    def __init__(self, padroes_remover=None):
+    def __init__(self, padroes_remover: Optional[List[str]] = None):
         """
         Inicializa a instância da classe.
 
@@ -11,7 +12,7 @@ class LimparTexto:
         """
         self.padroes_remover = padroes_remover or []
 
-    def limpar(self, texto):
+    def limpar(self, texto: str) -> str:
         """
         Limpa o texto removendo caracteres especiais, pontuações, etc.
 
