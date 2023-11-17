@@ -1,11 +1,11 @@
 # tratamento/controlador.py
 from typing import List
 
-from .limpar_texto import LimparTexto
-from .lematizacao import Lematizacao
-from .stop_words import RemoverStopWords
-from .tokenizacao import Tokenizacao
-from .vetorizacao import Vetorizacao
+from limpar_texto import LimparTexto
+from lematizacao import Lematizacao
+from stop_words import RemoverStopWords
+from tokenizacao import Tokenizacao
+from vetorizacao import Vetorizacao
 
 class ControladorPreprocessamento:
     def __init__(self):
