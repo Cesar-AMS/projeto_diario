@@ -1,25 +1,30 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from tratacao.controlador import ControladorPreprocessamento
 
 app = Flask(__name__)
 
-# Instanciar o controlador
 controlador_preprocessamento = ControladorPreprocessamento()
 
 @app.route("/", methods=["GET", "POST"])
-def home():
-    entrada_usuario = None
-    resposta_tratada = None
+def minha_rota():
+    if request.method == "GET":
+        # Lógica para tratamento de solicitações GET
+        return render_template("pagina_principal.html")
 
-    if request.method == "POST":
-        # Obter a entrada do usuário do formulário
+    elif request.method == "POST":
+        # Lógica para tratamento de solicitações POST
         entrada_usuario = request.form.get("entrada_usuario")
 
-        # Processar a entrada usando o controlador
-        resposta_tratada = controlador_preprocessamento.preprocessar(entrada_usuario)
+        # Validar se a entrada do usuário está presente
+        if entrada_usuario:
+            # Processar a entrada usando o ControladorPreprocessamento
+            resposta_tratada = controlador_preprocessamento.preprocessar(entrada_usuario)
 
-    return render_template("home.html", entrada=entrada_usuario, resposta=resposta_tratada)
+            # Retornar o resultado como JSON
+            return jsonify({"entrada": entrada_usuario, "resposta": {"resposta_tratada": resposta_tratada}})
 
-# Colocar o site no ar
+        # Se a entrada do usuário não estiver presente, retornar uma resposta de erro (opcional)
+        return jsonify({"erro": "Entrada do usuário não fornecida"})
+
 if __name__ == "__main__":
     app.run(debug=True)
