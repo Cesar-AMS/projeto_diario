@@ -7,7 +7,10 @@ from .stop_words import RemoverStopWords
 from .tokenizacao import Tokenizacao
 from .vetorizacao import Vetorizacao
 
+# classe para controlar as classes especializadas
 class ControladorPreprocessamento:
+
+    # construtor com as instâncias classes especializadas
     def __init__(self):
         self.limpar_texto = LimparTexto()
         self.lematizacao = Lematizacao()
@@ -15,6 +18,7 @@ class ControladorPreprocessamento:
         self.tokenizacao = Tokenizacao()
         self.vetorizacao = Vetorizacao()
 
+    # interface por composição
     def preprocessar(self, texto: str) -> List[List[float]]:
         # Limpar o texto
         texto_limpo = self.limpar_texto.limpar(texto)

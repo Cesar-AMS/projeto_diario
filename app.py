@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 controlador_preprocessamento = ControladorPreprocessamento()
 
+
 @app.route("/", methods=["GET", "POST"])
 def minha_rota():
     if request.method == "GET":
@@ -18,13 +19,15 @@ def minha_rota():
         # Validar se a entrada do usuário está presente
         if entrada_usuario:
             # Processar a entrada usando o ControladorPreprocessamento
-            resposta_tratada = controlador_preprocessamento.preprocessar(entrada_usuario)
+            resposta_tratada = controlador_preprocessamento.preprocessar(
+                entrada_usuario)
 
             # Retornar o resultado como JSON
             return jsonify({"entrada": entrada_usuario, "resposta": {"resposta_tratada": resposta_tratada}})
 
         # Se a entrada do usuário não estiver presente, retornar uma resposta de erro (opcional)
         return jsonify({"erro": "Entrada do usuário não fornecida"})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
