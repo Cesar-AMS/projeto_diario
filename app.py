@@ -7,10 +7,10 @@ controlador_preprocessamento = ControladorPreprocessamento()
 
 
 @app.route("/", methods=["GET", "POST"])
-def minha_rota():
+def index():
     if request.method == "GET":
         # Lógica para tratamento de solicitações GET
-        return render_template("pagina_principal.html")
+        return render_template("home.html")
 
     elif request.method == "POST":
         # Lógica para tratamento de solicitações POST
